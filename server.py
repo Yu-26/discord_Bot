@@ -110,6 +110,13 @@ def privacy():
     </body>
     </html>
     """
+@app.route("/")
+def home():
+    return """
+    <h1>Discord Bot: カレンダー通知アプリ</h1>
+    <p>このアプリは Google Calendar の予定を読み取り、Discord に通知するサービスです。</p>
+    <p>プライバシーポリシーは <a href="/privacy">こちら</a></p>
+    """
 
 
 # --- 最後にだけ置く ---
