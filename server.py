@@ -43,6 +43,42 @@ def auth():
 
     return redirect(auth_url)
 
+import requests
+from flask import request
+
+@app.route("/callback")
+def callback():
+    # Google から返ってきた code を取得
+    code = request.args.get("code")
+
+    # credentials.json 読み込み
+    with open("credentials.json", "r", encoding="utf-8") as f:
+        creds = json.load(f)
+
+    client_id = creds["web"]["client_id"]
+    client_secret = creds["web"]["client_secret"]
+    redirect_uri = creds["web"]["redirect_uris"][0]
+    token_uri = creds["web"]["token_uri"]
+
+    # code → アクセストークン に変換
+    data = {
+        "code": code,
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "redirect_uri": redirect_uri,
+        "grant_type": "authorization_code"
+    }
+
+    # Google のトークンエンドポイントへ POST
+    token_res = requests.post(token_uri, data=data)
+    token_json = token_res.json()
+
+    # デバッグ表示用
+    print("TOKEN RESPONSE:", token_json)
+
+    return "Google OAuth Success! You can close this page."
+
+
 # --- 最後にだけ置く ---
 if __name__ == "__main__":
     app.run(port=5000)
