@@ -137,6 +137,8 @@ def run_discord_bot():
 
 
 # --- Flask と Discord Bot を同時起動 ---
-if __name__ == "__main__":
-    threading.Thread(target=run_discord_bot, daemon=True).start()
-    app.run(port=5000)
+threading.Thread(target=run_discord_bot, daemon=True).start()
+
+# gunicorn 用に Flask app を公開
+# (ここは関数定義のままで OK)
+
