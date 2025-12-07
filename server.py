@@ -77,6 +77,39 @@ def callback():
     print("TOKEN RESPONSE:", token_json)
 
     return "Google OAuth Success! You can close this page."
+@app.route("/privacy")
+def privacy():
+    return """
+    <!DOCTYPE html>
+    <html lang='ja'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>プライバシーポリシー</title>
+    </head>
+    <body>
+        <h1>プライバシーポリシー</h1>
+        <p>このアプリ（Discord Bot）は、ユーザーの Google Calendar 予定を読み取り、Discord 上でリマインド通知を提供するためにのみ使用します。</p>
+
+        <h2>収集する情報</h2>
+        <p>- ユーザーの Google Calendar の予定（読み取り専用）<br>
+        - Discord ID（Bot が通知を送るため）</p>
+
+        <h2>情報の利用目的</h2>
+        <p>- カレンダーの予定を Discord に通知するため<br>
+        - 他の目的で使用することはありません</p>
+
+        <h2>情報の共有</h2>
+        <p>- ユーザーの許可なしに第三者に情報を提供することはありません</p>
+
+        <h2>セキュリティ</h2>
+        <p>- 収集した情報は安全に保管されます<br>
+        - 外部に公開されることはありません</p>
+
+        <h2>お問い合わせ</h2>
+        <p>- 問い合わせは doragonnfurai5026@gmail.com までご連絡ください</p>
+    </body>
+    </html>
+    """
 
 
 # --- 最後にだけ置く ---
